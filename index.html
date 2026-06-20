@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tonchain — DeFi Infrastructure Engineer</title>
+<meta name="description" content="DeFi infrastructure engineer building production-grade, fully on-chain infrastructure for Uniswap V4. Two live DApps on Base and Unichain mainnet. Uniswap Hook Incubator — Cohort 9." />
+<meta name="author" content="Tonchain" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Tonchain — DeFi Infrastructure Engineer" />
+<meta property="og:description" content="Production-grade, fully on-chain infrastructure for Uniswap V4. Two live DApps on Base and Unichain mainnet. UHI9." />
+<meta property="og:url" content="https://impetus82.github.io" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tonchain — DeFi Infrastructure Engineer" />
+<meta name="twitter:description" content="Production-grade, fully on-chain infrastructure for Uniswap V4." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff007a'/%3E%3Cstop offset='1' stop-color='%237c5cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%230b0d12'/%3E%3Crect x='3' y='3' width='58' height='58' rx='14' fill='none' stroke='url(%23g)' stroke-width='2'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='34' font-weight='700' fill='url(%23g)' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0b0f; --bg-soft: #0e1016; --surface: #12141c; --surface-2: #161924;
+    --border: rgba(255,255,255,0.08); --border-strong: rgba(255,255,255,0.14);
+    --text: #e8eaf0; --text-muted: #9aa3b5; --text-dim: #6b7385;
+    --pink: #ff007a; --violet: #7c5cff; --cyan: #22d3ee; --green: #34d399;
+    --maxw: 1080px; --radius: 16px; --ease: cubic-bezier(0.22,1,0.36,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: radial-gradient(640px circle at 15% -5%, rgba(255,0,122,0.14), transparent 55%), radial-gradient(720px circle at 90% 8%, rgba(124,92,255,0.14), transparent 55%), radial-gradient(900px circle at 50% 110%, rgba(34,211,238,0.06), transparent 60%); }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: rgba(255,0,122,0.3); color: #fff; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .grad-text { background: linear-gradient(100deg, var(--pink), var(--violet) 60%, var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; transition: background .3s var(--ease), border-color .3s var(--ease), backdrop-filter .3s; border-bottom: 1px solid transparent; }
+  nav.scrolled { background: rgba(10,11,15,0.72); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; font-size: 16px; }
+  .brand .dot { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--pink), var(--violet)); display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px; color: #fff; }
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+  .nav-links a { color: var(--text-muted); font-size: 14.5px; font-weight: 500; padding: 8px 14px; border-radius: 9px; transition: color .2s, background .2s; }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+  .nav-cta { border: 1px solid var(--border-strong) !important; color: var(--text) !important; }
+  .nav-cta:hover { border-color: var(--pink) !important; background: rgba(255,0,122,0.08) !important; }
+  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 11px; font-weight: 600; font-size: 14.5px; border: 1px solid var(--border-strong); color: var(--text); transition: transform .2s var(--ease), border-color .2s, background .2s, box-shadow .2s; cursor: pointer; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: linear-gradient(135deg, var(--pink), var(--violet)); border-color: transparent; color: #fff; box-shadow: 0 8px 28px -10px rgba(255,0,122,0.6); }
+  .btn-primary:hover { box-shadow: 0 14px 36px -10px rgba(255,0,122,0.7); }
+  .btn-ghost:hover { border-color: var(--border-strong); background: rgba(255,255,255,0.04); }
+  header { padding: 168px 0 90px; }
+  .pill { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px; font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.02); margin-bottom: 28px; }
+  .pill .ping { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(52,211,153,0.6); animation: ping 2.4s var(--ease) infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); } 70% { box-shadow: 0 0 0 7px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
+  h1 { font-size: clamp(2.6rem, 6.5vw, 4.6rem); line-height: 1.04; letter-spacing: -0.035em; font-weight: 800; margin-bottom: 22px; }
+  .hero-sub { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-muted); max-width: 620px; margin-bottom: 14px; }
+  .hero-note { font-size: 14.5px; color: var(--text-dim); max-width: 600px; margin-bottom: 38px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 72px; }
+  .stat { border: 1px solid var(--border); border-radius: 14px; padding: 22px 20px; background: linear-gradient(180deg, rgba(255,255,255,0.025), transparent); }
+  .stat .num { font-family: 'JetBrains Mono', monospace; font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+  .stat .lbl { color: var(--text-dim); font-size: 13px; margin-top: 9px; }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  section { padding: 88px 0; }
+  .sec-head { margin-bottom: 44px; }
+  .sec-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--pink); letter-spacing: 0.04em; margin-bottom: 12px; }
+  .sec-title { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.025em; }
+  .sec-desc { color: var(--text-muted); margin-top: 12px; max-width: 560px; }
+  .projects { display: grid; gap: 22px; }
+  .card { border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; background: linear-gradient(180deg, var(--surface), var(--bg-soft)); position: relative; overflow: hidden; transition: border-color .3s var(--ease), transform .3s var(--ease); }
+  .card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(120deg, rgba(255,0,122,0.5), transparent 40%, transparent 60%, rgba(124,92,255,0.5)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .35s var(--ease); }
+  .card:hover { transform: translateY(-4px); }
+  .card:hover::before { opacity: 1; }
+  .card-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .card-top h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; font-family: 'JetBrains Mono', monospace; }
+  .card-kicker { color: var(--text-dim); font-size: 14px; font-weight: 500; }
+  .card-lead { color: var(--text-muted); margin: 14px 0 20px; max-width: 70ch; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .badge { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 11px; border-radius: 7px; border: 1px solid var(--border); color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; }
+  .badge.live { color: var(--green); border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.07); }
+  .badge.tests { color: var(--cyan); border-color: rgba(34,211,238,0.28); background: rgba(34,211,238,0.06); }
+  .badge.chain { color: var(--violet); border-color: rgba(124,92,255,0.3); background: rgba(124,92,255,0.07); }
+  .feat { list-style: none; display: grid; gap: 11px; margin-bottom: 24px; }
+  .feat li { position: relative; padding-left: 24px; color: var(--text-muted); font-size: 14.8px; }
+  .feat li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 7px; height: 7px; border-radius: 2px; background: linear-gradient(135deg, var(--pink), var(--violet)); }
+  .feat li strong { color: var(--text); font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+  .tag { font-size: 12.5px; padding: 5px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); }
+  .card-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .clink { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; padding: 9px 15px; border-radius: 9px; border: 1px solid var(--border-strong); transition: border-color .2s, background .2s, transform .2s; }
+  .clink:hover { transform: translateY(-2px); border-color: var(--pink); background: rgba(255,0,122,0.07); }
+  .clink.solid { background: rgba(255,255,255,0.05); }
+  .clink svg { width: 15px; height: 15px; }
+  .deployed { margin-top: 22px; padding-top: 20px; border-top: 1px dashed var(--border); font-size: 13px; color: var(--text-dim); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .deployed a { color: var(--text-muted); border-bottom: 1px solid transparent; word-break: break-all; transition: color .2s, border-color .2s; }
+  .deployed a:hover { color: var(--cyan); border-color: var(--cyan); }
+  .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .stack-col { border: 1px solid var(--border); border-radius: 14px; padding: 24px; background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); }
+  .stack-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--pink); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .stack-col ul { list-style: none; display: grid; gap: 9px; }
+  .stack-col li { color: var(--text-muted); font-size: 14.5px; }
+  @media (max-width: 880px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .stack-grid { grid-template-columns: 1fr; } }
+  .contact { border: 1px solid var(--border); border-radius: 22px; padding: clamp(36px, 6vw, 64px); text-align: center; background: radial-gradient(600px circle at 50% -20%, rgba(255,0,122,0.12), transparent 60%), linear-gradient(180deg, var(--surface), var(--bg-soft)); position: relative; overflow: hidden; }
+  .contact h2 { font-size: clamp(1.8rem, 4.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .contact p { color: var(--text-muted); max-width: 480px; margin: 0 auto 32px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  footer { border-top: 1px solid var(--border); padding: 36px 0; margin-top: 40px; }
+  .foot-inner { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; color: var(--text-dim); font-size: 13.5px; }
+  .foot-inner a { color: var(--text-muted); }
+  .foot-inner a:hover { color: var(--text); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .pill .ping { animation: none; } }
+</style>
+</head>
+<body>
+<nav id="nav"><div class="nav-inner">
+  <a href="#top" class="brand"><span class="dot mono">T</span> Tonchain</a>
+  <div class="nav-links">
+    <a href="#projects">Projects</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+    <a href="https://github.com/impetus82" class="nav-cta" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div></nav>
+<header id="top"><div class="wrap">
+  <div class="pill reveal"><span class="ping"></span> Uniswap Hook Incubator — Cohort 9 (UHI9)</div>
+  <h1 class="reveal">Building <span class="grad-text">on-chain infrastructure</span><br />for Uniswap&nbsp;V4.</h1>
+  <p class="hero-sub reveal">I'm Tonchain — a DeFi infrastructure engineer shipping production-grade hooks that run fully on-chain.</p>
+  <p class="hero-note reveal">No off-chain relayers. No trusted intermediaries. No keepers. Just contracts that execute themselves — live on mainnet.</p>
+  <div class="hero-actions reveal">
+    <a href="#projects" class="btn btn-primary">Explore projects →</a>
+    <a href="https://github.com/impetus82" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://t.me/yurka_e" class="btn btn-ghost" target="_blank" rel="noopener">Telegram</a>
+  </div>
+  <div class="stats">
+    <div class="stat reveal"><div class="num grad-text">2</div><div class="lbl">Live DApps in production</div></div>
+    <div class="stat reveal"><div class="num grad-text">2</div><div class="lbl">Mainnet chains — Base · Unichain</div></div>
+    <div class="stat reveal"><div class="num grad-text">91</div><div class="lbl">Tests passing across hooks</div></div>
+    <div class="stat reveal"><div class="num grad-text">UHI9</div><div class="lbl">Hook Incubator — Cohort 9</div></div>
+  </div>
+</div></header>
+<section id="projects"><div class="wrap">
+  <div class="sec-head reveal"><div class="sec-eyebrow">// FEATURED WORK</div><h2 class="sec-title">Hooks shipped to mainnet</h2><p class="sec-desc">Two Uniswap V4 hooks running in production — each with a live DApp, gas-bounded execution, and a full test suite.</p></div>
+  <div class="projects">
+    <article class="card reveal">
+      <div class="card-top"><h3>il-aware-limit-order-hook</h3><span class="card-kicker">IL-Aware Limit Orders · UHI9 Hookathon</span></div>
+      <p class="card-lead">Turns a passive limit order into a yield-bearing position — and refunds the user for impermanent loss out of the yield it earns.</p>
+      <div class="badges"><span class="badge live">● Live · Unichain mainnet</span><span class="badge tests">53 / 53 tests</span><span class="badge chain">ERC-721 · ERC-4626</span></div>
+      <ul class="feat">
+        <li><strong>Oracle-free IL rebate</strong> — impermanent loss derived from <span class="mono">sqrtPriceX96</span> deltas via a 2nd-order Taylor approximation; <span class="mono">rebate = min(yield, IL)</span>.</li>
+        <li><strong>Yield routing</strong> — executed output deposited into an ERC-4626 vault until claim.</li>
+        <li><strong>Orders as NFTs</strong> — every order is an ERC-721: composable and tradable on secondary markets.</li>
+        <li><strong>O(1) tick scanning</strong> — doubly-linked list of active ticks only; cost scales with populated ticks crossed, not range width.</li>
+        <li><strong>Anti-DoS execution</strong> — failed orders emit and re-queue instead of reverting the swap, with gas metering against OOG.</li>
+      </ul>
+      <div class="tags"><span class="tag">Solidity 0.8.26</span><span class="tag">Uniswap V4</span><span class="tag">OpenZeppelin</span><span class="tag">Foundry</span><span class="tag">Next.js</span><span class="tag">wagmi v2</span><span class="tag">viem</span><span class="tag">RainbowKit</span></div>
+      <div class="card-links">
+        <a class="clink solid" href="https://il-aware-hook.vercel.app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14L21 3M21 3h-7M21 3v7M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg> Live DApp</a>
+        <a class="clink" href="https://github.com/impetus82/il-aware-limit-order-hook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.4.5 0 5.9 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.1 2.9.1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.8-1.6 8.2-6.1 8.2-11.4C24 5.9 18.6.5 12 .5z"/></svg> Source</a>
+      </div>
+      <div class="deployed"><span class="mono">Hook · Unichain:</span><a class="mono" href="https://uniscan.xyz/address/0x8C19f1641946c662308000bB4E2Eaf684c81d4CE" target="_blank" rel="noopener">0x8C19f1641946c662308000bB4E2Eaf684c81d4CE</a></div>
+    </article>
+    <article class="card reveal">
+      <div class="card-top"><h3>limit-order-hook-v4</h3><span class="card-kicker">Fully On-Chain Limit Orders</span></div>
+      <p class="card-lead">Production limit orders for Uniswap V4 with automated, gas-bounded execution triggered directly inside swaps.</p>
+      <div class="badges"><span class="badge live">● Live · Base + Unichain</span><span class="badge tests">38 / 38 tests</span><span class="badge chain">afterSwap hook</span></div>
+      <ul class="feat">
+        <li><strong>Self-executing</strong> — orders fill in the <span class="mono">afterSwap</span> hook as the pool crosses their tick. No keepers, no relayers.</li>
+        <li><strong>O(1) tick buckets</strong> — doubly-linked list of populated ticks for constant-time lookup during execution.</li>
+        <li><strong>Anti-DoS, graceful execution</strong> — a failing order never bricks the swap path.</li>
+        <li><strong>Bounded gas</strong> — 5 BPS execution fee, gas-metered batch execution, 150k gas cutoff per swap.</li>
+        <li><strong>Audit-ready</strong> — documented scope and invariants for external review.</li>
+      </ul>
+      <div class="tags"><span class="tag">Solidity 0.8.26</span><span class="tag">Uniswap V4</span><span class="tag">Foundry</span><span class="tag">Next.js</span><span class="tag">wagmi v2</span><span class="tag">RainbowKit</span></div>
+      <div class="card-links">
+        <a class="clink solid" href="https://limit-order-hook-v4.vercel.app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14L21 3M21 3h-7M21 3v7M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg> Live DApp</a>
+        <a class="clink" href="https://github.com/impetus82/limit-order-hook-v4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.4.5 0 5.9 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.1 2.9.1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.8-1.6 8.2-6.1 8.2-11.4C24 5.9 18.6.5 12 .5z"/></svg> Source</a>
+        <a class="clink" href="https://github.com/impetus82/limit-order-hook-v4/blob/main/AUDIT_SCOPE.md" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 4.5-3 7.5-8 9-5-1.5-8-4.5-8-9V7l8-4z"/></svg> Audit scope</a>
+      </div>
+    </article>
+  </div>
+</div></section>
+<section id="stack"><div class="wrap">
+  <div class="sec-head reveal"><div class="sec-eyebrow">// TOOLCHAIN</div><h2 class="sec-title">Tech stack</h2><p class="sec-desc">From Solidity invariants to a wallet-connected frontend, end to end.</p></div>
+  <div class="stack-grid">
+    <div class="stack-col reveal"><h4>Contracts</h4><ul><li>Solidity</li><li>Foundry</li><li>Uniswap V4</li><li>OpenZeppelin</li><li>ERC-721 / ERC-4626</li></ul></div>
+    <div class="stack-col reveal"><h4>Frontend</h4><ul><li>Next.js</li><li>TypeScript</li><li>wagmi v2</li><li>viem</li><li>RainbowKit</li></ul></div>
+    <div class="stack-col reveal"><h4>Chains</h4><ul><li>Base</li><li>Unichain</li><li>Arbitrum <span style="color:var(--text-dim)">(upcoming)</span></li></ul></div>
+    <div class="stack-col reveal"><h4>Ops</h4><ul><li>Gnosis Safe 2-of-3</li><li>Vercel</li><li>GitHub Actions</li><li>Foundry CI</li></ul></div>
+  </div>
+</div></section>
+<section id="contact"><div class="wrap">
+  <div class="contact reveal">
+    <h2>Let's build on-chain.</h2>
+    <p>Open to protocol engineering, Uniswap V4 hook work, and DeFi infrastructure collaborations.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="https://t.me/yurka_e" target="_blank" rel="noopener">Telegram @yurka_e</a>
+      <a class="btn btn-ghost" href="mailto:egoshin_crypto@proton.me">egoshin_crypto@proton.me</a>
+      <a class="btn btn-ghost" href="https://github.com/impetus82" target="_blank" rel="noopener">github.com/impetus82</a>
+    </div>
+  </div>
+</div></section>
+<footer><div class="wrap foot-inner"><span>© <span id="year"></span> Tonchain — DeFi Infrastructure Engineer</span><span>Fully on-chain · Built for Uniswap V4</span></div></footer>
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 16);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const io = new IntersectionObserver((entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = Math.min(i % 6, 5) * 60 + 'ms'; io.observe(el); });
+</script>
+</body>
+</html>

@@ -138,7 +138,7 @@
   <div class="stats">
     <div class="stat reveal"><div class="num grad-text">2</div><div class="lbl">Live DApps in production</div></div>
     <div class="stat reveal"><div class="num grad-text">2</div><div class="lbl">Mainnet chains — Base · Unichain</div></div>
-    <div class="stat reveal"><div class="num grad-text">91</div><div class="lbl">Tests passing across hooks</div></div>
+    <div class="stat reveal"><div class="num grad-text">110</div><div class="lbl">Tests passing across hooks</div></div>
     <div class="stat reveal"><div class="num grad-text">UHI9</div><div class="lbl">Hook Incubator — Cohort 9</div></div>
   </div>
 </div></header>
@@ -148,20 +148,22 @@
     <article class="card reveal">
       <div class="card-top"><h3>il-aware-limit-order-hook</h3><span class="card-kicker">IL-Aware Limit Orders · UHI9 Hookathon</span></div>
       <p class="card-lead">Turns a passive limit order into a yield-bearing position — and refunds the user for impermanent loss out of the yield it earns.</p>
-      <div class="badges"><span class="badge live">● Live · Unichain mainnet</span><span class="badge tests">53 / 53 tests</span><span class="badge chain">ERC-721 · ERC-4626</span></div>
+      <div class="badges"><span class="badge live">● Live · Base + Unichain</span><span class="badge tests">72 tests</span><span class="badge chain">ERC-721 · ERC-4626</span><span class="badge">UHI9 prize winner</span></div>
       <ul class="feat">
         <li><strong>Oracle-free IL rebate</strong> — impermanent loss derived from <span class="mono">sqrtPriceX96</span> deltas via a 2nd-order Taylor approximation; <span class="mono">rebate = min(yield, IL)</span>.</li>
-        <li><strong>Yield routing</strong> — executed output deposited into an ERC-4626 vault until claim.</li>
+        <li><strong>Yield routing</strong> — executed output deposited into an ERC-4626 vault until claim: <strong>real Aave (waBasUSDC)</strong> on Base, a simulated vault on Unichain.</li>
         <li><strong>Orders as NFTs</strong> — every order is an ERC-721: composable and tradable on secondary markets.</li>
         <li><strong>O(1) tick scanning</strong> — doubly-linked list of active ticks only; cost scales with populated ticks crossed, not range width.</li>
         <li><strong>Anti-DoS execution</strong> — failed orders emit and re-queue instead of reverting the swap, with gas metering against OOG.</li>
+        <li><strong>Audit-hardened</strong> — per-pool order isolation, a per-currency solvency invariant, and a hard trigger-price gate, backed by Foundry invariant tests; scope + threat model documented for external review.</li>
       </ul>
       <div class="tags"><span class="tag">Solidity 0.8.26</span><span class="tag">Uniswap V4</span><span class="tag">OpenZeppelin</span><span class="tag">Foundry</span><span class="tag">Next.js</span><span class="tag">wagmi v2</span><span class="tag">viem</span><span class="tag">RainbowKit</span></div>
       <div class="card-links">
         <a class="clink solid" href="https://il-aware-hook.vercel.app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14L21 3M21 3h-7M21 3v7M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg> Live DApp</a>
         <a class="clink" href="https://github.com/impetus82/il-aware-limit-order-hook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.4.5 0 5.9 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.1 2.9.1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.8-1.6 8.2-6.1 8.2-11.4C24 5.9 18.6.5 12 .5z"/></svg> Source</a>
+        <a class="clink" href="https://github.com/impetus82/il-aware-limit-order-hook/blob/main/docs/AUDIT_SCOPE.md" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 4.5-3 7.5-8 9-5-1.5-8-4.5-8-9V7l8-4z"/></svg> Audit scope</a>
       </div>
-      <div class="deployed"><span class="mono">Hook · Unichain:</span><a class="mono" href="https://uniscan.xyz/address/0x8C19f1641946c662308000bB4E2Eaf684c81d4CE" target="_blank" rel="noopener">0x8C19f1641946c662308000bB4E2Eaf684c81d4CE</a></div>
+      <div class="deployed"><span class="mono">Hook · Unichain:</span><a class="mono" href="https://uniscan.xyz/address/0x8C19f1641946c662308000bB4E2Eaf684c81d4CE" target="_blank" rel="noopener">0x8C19f1641946c662308000bB4E2Eaf684c81d4CE</a><span class="mono">Hook · Base:</span><a class="mono" href="https://basescan.org/address/0x17fE80F8a1ba277B1acd86D1622FaFC20CD254Ce" target="_blank" rel="noopener">0x17fE80F8a1ba277B1acd86D1622FaFC20CD254Ce</a></div>
     </article>
     <article class="card reveal">
       <div class="card-top"><h3>limit-order-hook-v4</h3><span class="card-kicker">Fully On-Chain Limit Orders</span></div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Tonchain — DeFi Infrastructure Engineer</title>
-<meta name="description" content="DeFi infrastructure engineer building production-grade, fully on-chain infrastructure for Uniswap V4. Two live DApps on Base and Unichain mainnet. Uniswap Hook Incubator — Cohort 9." />
+<meta name="description" content="DeFi infrastructure engineer building on-chain infrastructure for Uniswap V4. Three live DApps on Base and Unichain mainnet. UHI9 alum, UHI10 Hookathon." />
 <meta name="author" content="Tonchain" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Tonchain — DeFi Infrastructure Engineer" />
@@ -126,7 +126,7 @@
   </div>
 </div></nav>
 <header id="top"><div class="wrap">
-  <div class="pill reveal"><span class="ping"></span> Uniswap Hook Incubator — Cohort 9 (UHI9)</div>
+  <div class="pill reveal"><span class="ping"></span> Uniswap Hook Incubator — UHI9 alum · UHI10 Hookathon</div>
   <h1 class="reveal">Building <span class="grad-text">on-chain infrastructure</span><br />for Uniswap&nbsp;V4.</h1>
   <p class="hero-sub reveal">I'm Tonchain — a DeFi infrastructure engineer shipping production-grade hooks that run fully on-chain.</p>
   <p class="hero-note reveal">No off-chain relayers. No trusted intermediaries. No keepers. Just contracts that execute themselves — live on mainnet.</p>
@@ -136,15 +136,37 @@
     <a href="https://t.me/yurka_e" class="btn btn-ghost" target="_blank" rel="noopener">Telegram</a>
   </div>
   <div class="stats">
-    <div class="stat reveal"><div class="num grad-text">2</div><div class="lbl">Live DApps in production</div></div>
+    <div class="stat reveal"><div class="num grad-text">3</div><div class="lbl">Live DApps in production</div></div>
     <div class="stat reveal"><div class="num grad-text">2</div><div class="lbl">Mainnet chains — Base · Unichain</div></div>
-    <div class="stat reveal"><div class="num grad-text">115</div><div class="lbl">Tests passing across hooks</div></div>
-    <div class="stat reveal"><div class="num grad-text">UHI9</div><div class="lbl">Hook Incubator — Cohort 9</div></div>
+    <div class="stat reveal"><div class="num grad-text">181</div><div class="lbl">Tests passing across hooks</div></div>
+    <div class="stat reveal"><div class="num grad-text">UHI9</div><div class="lbl">Alum · UHI10 Hookathon</div></div>
   </div>
 </div></header>
 <section id="projects"><div class="wrap">
-  <div class="sec-head reveal"><div class="sec-eyebrow">// FEATURED WORK</div><h2 class="sec-title">Hooks shipped to mainnet</h2><p class="sec-desc">Two Uniswap V4 hooks running in production — each with a live DApp, gas-bounded execution, and a full test suite.</p></div>
+  <div class="sec-head reveal"><div class="sec-eyebrow">// FEATURED WORK</div><h2 class="sec-title">Hooks shipped to mainnet</h2><p class="sec-desc">Three Uniswap V4 hooks running in production — each with a live DApp, gas-bounded execution, and a full test suite.</p></div>
   <div class="projects">
+    <article class="card reveal">
+      <div class="card-top"><h3>airbag-hook</h3><span class="card-kicker">Impact Protection for Limit Orders · UHI10 Hookathon</span></div>
+      <p class="card-lead">Pays a resting limit-order maker for the price displacement caused by the swap that filled them — measured inside the same transaction, from the pool&rsquo;s own tick.</p>
+      <div class="badges"><span class="badge live">● Live · Base + Unichain</span><span class="badge tests">66 tests</span><span class="badge chain">ERC-721 · oracle-free</span><span class="badge">2 adversarial audits</span></div>
+      <ul class="feat">
+        <li><strong>Measured before a line of Solidity</strong> — thirty days of Base WETH/USDC, <strong>253,135 swaps</strong>. Median displacement came out at <strong>2.00 bps</strong>, the same figure from three independent pools and two time windows.</li>
+        <li><strong>The threshold is the pool&rsquo;s own fee, not a tuned constant</strong> — a maker filled by an ordinary swap already earned that fee, so below it the hook stays silent and benign flow pays nothing. No special case needed to say so.</li>
+        <li><strong>The recipient is the difference</strong> — comparable designs return recaptured value to the LP pool at large. Airbag pays the <em>specific</em> maker who was run over, which is only possible because each order is an ERC-721 with an identity.</li>
+        <li><strong>No oracle, no keeper, no deferred settlement</strong> — one tick is one basis point, so the metric is exact integer arithmetic. Nothing is read at a later block: a future price is a value the filler themselves could write.</li>
+        <li><strong>Verified on mainnet to the basis point</strong> — a full place → cross → claim cycle on <em>both</em> chains. Each recorded 70 bps of displacement; the charge rule owed <span class="mono">33.50 bps</span> of the maker&rsquo;s notional and each paid <span class="mono">33.50 bps</span>. Opposite currency ordering, opposite swap direction, same number.</li>
+        <li><strong>Two adversarial audit rounds before deploying</strong> — eight blockers in the first, two criticals in the second, both introduced by my own fix for the first. The invariant that should have caught them summed the wrong field: the detector was repaired before the defect.</li>
+        <li><strong>Limits written down, not discovered in production</strong> — three findings stay open by choice, each with the reasoning, in <span class="mono">KNOWN-LIMITS.md</span>. The demo pools hold dust and the crossing swaps were mine; the mechanism is proven, the economics need depth.</li>
+      </ul>
+      <div class="tags"><span class="tag">Solidity 0.8.26</span><span class="tag">Uniswap V4</span><span class="tag">Foundry</span><span class="tag">Invariant tests</span><span class="tag">EIP-1153</span><span class="tag">Next.js</span><span class="tag">wagmi v2</span><span class="tag">viem</span></div>
+      <div class="card-links">
+        <a class="clink solid" href="https://impetus82.github.io/airbag-hook/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14L21 3M21 3h-7M21 3v7M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg> Live DApp</a>
+        <a class="clink" href="https://github.com/impetus82/airbag-hook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.4.5 0 5.9 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.1 2.9.1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.8-1.6 8.2-6.1 8.2-11.4C24 5.9 18.6.5 12 .5z"/></svg> Source</a>
+        <a class="clink" href="https://impetus82.github.io/airbag-hook/explainer/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg> Explainer</a>
+        <a class="clink" href="https://github.com/impetus82/airbag-hook/blob/main/docs/KNOWN-LIMITS.md" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 4.5-3 7.5-8 9-5-1.5-8-4.5-8-9V7l8-4z"/></svg> Known limits</a>
+      </div>
+      <div class="deployed"><span class="mono">Hook · Base:</span><a class="mono" href="https://basescan.org/address/0x100d7855adac79d90a75b7a89cf99a9f2b0100c4" target="_blank" rel="noopener">0x100d7855ADAC79D90A75B7A89Cf99A9f2B0100C4</a><span class="mono">Hook · Unichain:</span><a class="mono" href="https://uniscan.xyz/address/0x82f8ff08608a4357a9bb12f7439b43453cf6c0c4" target="_blank" rel="noopener">0x82f8fF08608a4357a9BB12F7439b43453CF6C0C4</a></div>
+    </article>
     <article class="card reveal">
       <div class="card-top"><h3>il-aware-limit-order-hook</h3><span class="card-kicker">IL-Aware Limit Orders · UHI9 Hookathon</span></div>
       <p class="card-lead">Turns a passive limit order into a yield-bearing position — and refunds the user for impermanent loss out of the yield it earns.</p>
